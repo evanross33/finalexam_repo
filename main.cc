@@ -10,6 +10,9 @@
 #include <cctype>
 #include <stdio.h>
 #include <stdarg.h>
+#include <string>
+#include <algorithm>
+#include <iostream>
 
 
 typedef unsigned long count_t;  /* Counter type */
@@ -131,14 +134,36 @@ counter (const char *file)
   total_lcount += lcount;
   return ccount;
 }
-
+/*! \brief Finds length of string
+ *
+ * Finds the size of the string and returns that value in bytes (Since 1 char = 1 byte)
+ *	@return size_t size of string in bytes
+ */
+size_t countChar(std::string s) {
+  return s.size();
+}
+/*! \brief counts the amount of '\n' in provided string
+ *
+ * Uses count of algorithm to count all instances of '\n' from begining of string to the end
+ *	@return size_t amount of '\n'
+ */
+size_t countLine(std::string s) {
+  return std::count(s.begin(), s.end(), '\n');
+}
+/*! \brief driver function
+ *
+ * counts total args and executes the correlating functions
+ *	@return int 0
+ */
 int
 main (int argc, char **argv)
 {
   int i;
 
   if (argc < 2)
-    errf ("usage: wc FILE [FILE...]");
+    std::cout << countChar("Ohio University") << " ";
+    std::cout << countLine("Athens") << std::endl;
+    return 0;
 
   for (i = 1; i < argc; i++)
     counter (argv[i]);
