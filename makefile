@@ -8,7 +8,9 @@ doc:
 	doxygen -g doxygenconfig
 	doxygen doxygenconfig
 
-check: main.cc
-	cppcheck --enable=all --check-config main.cc
+check: Source1.cpp
+	cppcheck --enable=all --check-config Source1.cpp
+	g++ Source1.cpp -o a.out
+	valgrind -v ./a.out
 
 all: count doc
