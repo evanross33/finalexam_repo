@@ -8,4 +8,7 @@ doc:
 	doxygen -g doxygenconfig
 	doxygen doxygenconfig
 
+check: main.cc
+	cppcheck --enable=all --check-config main.cc
+
 all: count doc
